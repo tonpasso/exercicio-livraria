@@ -1,0 +1,55 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:dialog header="Pesquisar Livros" modal="true" visible="true">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Listar livros: " />
+				<p:commandButton value="Pesquisar" update="@form" action="#{LoginBean.listarLivros}" />		
+			<!-- <p:inputText value="#{LoginBean.txtUsuario}" /> -->			
+						
+			</p:panelGrid>
+				
+			<p:panelGrid columns="3">	
+				<p:commandButton value="Incluir livro"
+					onclick="PF('criarLivro').show();" />
+					
+				<p:commandButton value="Atualizar livro"
+					onclick="PF('').show();" />
+					
+			<p:commandButton value="Sair" update="@form" action="#{LoginBean.sairPesquisaLivros}" />
+
+			</p:panelGrid>
+		<p:messages id="messages" showDetail="true" closable="true">
+			<p:autoUpdate />
+		</p:messages>
+		</p:dialog>
+
+
+		
+		<!-- Criar Livro -->
+		<p:dialog header="Adicionar Livro" modal="true" visible="false"
+			widgetVar="criarLivro">
+			<p:panelGrid columns="2">
+				<p:outputLabel value="Código: " />
+				<p:inputText value="#{LoginBean.livro.codigo}" />
+				<p:outputLabel value="Título: " />
+				<p:inputText value="#{LoginBean.livro.titulo}" />
+				<p:outputLabel value="Autor: " />
+				<p:inputText value="#{LoginBean.livro.autor}" />
+				<p:outputLabel value="Categoria: " />
+				<p:inputText value="#{LoginBean.livro.categoria}" />
+				
+				<p:commandButton value="Salvar" update="@form"
+					actionListener="#{LoginBean.criarLivro}" />
+			</p:panelGrid>
+		</p:dialog>
+	</h:form>
+</h:body>
+</html>
